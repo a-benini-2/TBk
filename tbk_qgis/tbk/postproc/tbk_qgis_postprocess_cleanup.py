@@ -88,7 +88,7 @@ class TBkPostprocessCleanup(QgsProcessingAlgorithm):
         # Fix geometries
         alg_params = {
             'INPUT': outputs['ExtractArea_m2IsNotNull']['OUTPUT'],
-            'METHOD': 1,  # Structure
+            'METHOD': 0,  # Linework (0) instead of Structure (1) for Mac compatibility
             'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT
         }
         outputs['FixGeometries'] = processing.run('native:fixgeometries', alg_params, context=context,

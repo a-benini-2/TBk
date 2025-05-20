@@ -603,10 +603,12 @@ class TBkPostprocessLocalDensity(QgsProcessingAlgorithm):
             # f_save_as_gpkg(den_polys, "den_polys_plus_buffered")
 
         feedback.pushInfo("fix geometries of local densities and selected stands ...")
-        param = {'INPUT': den_polys, 'METHOD': 1, 'OUTPUT': 'TEMPORARY_OUTPUT'}
+        param = {'INPUT': den_polys, 'METHOD': 0, 'OUTPUT': 'TEMPORARY_OUTPUT'}
+        # METHOD Linework (0) instead of Structure (1) for Mac compatibility
         algoOutput = processing.run("native:fixgeometries", param)
         den_polys = algoOutput["OUTPUT"]
-        param = {'INPUT': stands, 'METHOD': 1, 'OUTPUT': 'TEMPORARY_OUTPUT'}
+        param = {'INPUT': stands, 'METHOD': 0, 'OUTPUT': 'TEMPORARY_OUTPUT'}
+        # METHOD Linework (0) instead of Structure (1) for Mac compatibility
         algoOutput = processing.run("native:fixgeometries", param)
         stands = algoOutput["OUTPUT"]
 

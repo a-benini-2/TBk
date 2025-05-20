@@ -104,7 +104,7 @@ class OptimizedSpatialJoin(QgsProcessingAlgorithm):
         # Fix geometries that were created by single part algorithm
         alg_params = {
             'INPUT': outputs['MultipartToSingleparts']['OUTPUT'],
-            'METHOD': 1,  # Structure
+            'METHOD': 0,  # Linework (0) instead of Structure (1) for Mac compatibility
             'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT
         }
         outputs['FixGeometries'] = processing.run('native:fixgeometries', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
